@@ -1,10 +1,10 @@
-Shader "Unlit/HIFlatten"
+ï»¿Shader "Unlit/HIFlatten"
 {
     Properties
     {
         _MainTex ("Texture", 2D) = "white" {}
-        _Value ("Ñ¹±âÏµÊı",Range(0, 1)) = 0
-        _Bottom ("µ×²¿", float) = 0
+        _Value ("å‹æ‰ç³»æ•°",Range(0, 1)) = 0
+        _Bottom ("åº•éƒ¨", float) = 0
     }
     SubShader
     {
@@ -43,14 +43,14 @@ Shader "Unlit/HIFlatten"
             {
                 v2f o;
                 o.uv = TRANSFORM_TEX(v.uv, _MainTex);
-                // Ä£ĞÍ¿Õ¼ä×ªµ½ÊÀ½ç¿Õ¼ä
+                // æ¨¡å‹ç©ºé—´è½¬åˆ°ä¸–ç•Œç©ºé—´
                 float3 worldPos = mul(unity_ObjectToWorld, v.vertex).xyz;
-                // Ñ¹YÖáÎ»ÖÃ ÕâÀï°ÑÊÀ½ç¿Õ¼äÏÂ¶¥µãµÄy¼õÈ¥×îµÍ²¿yµÄÖµ³ËÉÏÒ»¸öÏµÊı
-                // È»ºóÔÙÓÃyÈ¥¼õÈ¥Õâ¸öÖµ£¬¾Í¿ÉÒÔÍ¨¹ıÕâ¸öÏµÊıÀ´¿ØÖÆÍÃ×Ó±»Ñ¹±âµÄ³Ì¶È
+                // å‹Yè½´ä½ç½® è¿™é‡ŒæŠŠä¸–ç•Œç©ºé—´ä¸‹é¡¶ç‚¹çš„yå‡å»æœ€ä½éƒ¨yçš„å€¼ä¹˜ä¸Šä¸€ä¸ªç³»æ•°
+                // ç„¶åå†ç”¨yå»å‡å»è¿™ä¸ªå€¼ï¼Œå°±å¯ä»¥é€šè¿‡è¿™ä¸ªç³»æ•°æ¥æ§åˆ¶å…”å­è¢«å‹æ‰çš„ç¨‹åº¦
                 float y = worldPos.y - (worldPos.y - _Bottom) * _Value;
-                // ×îÖÕÊÀ½ç¿Õ¼äÎ»ÖÃ
+                // æœ€ç»ˆä¸–ç•Œç©ºé—´ä½ç½®
                 float3 tempWorld = float3(worldPos.x,y,worldPos.z);
-                // ÊÀ½ç¿Õ¼ä×ª²Ã¼ô¿Õ¼ä
+                // ä¸–ç•Œç©ºé—´è½¬è£å‰ªç©ºé—´
                 o.vertex = UnityWorldToClipPos(tempWorld);
                 return o;
             }
